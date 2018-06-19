@@ -82,7 +82,7 @@ var _audio = true; // enable audio on desktop devices
 /*=================================================
 effect
 =================================================*/
-var _effect = 0; // 0 = disable, 1 = cloud, 2 = star
+var _effect = 1; // 0 = disable, 1 = cloud, 2 = star
 
 /*=================================================
 _effect = 1
