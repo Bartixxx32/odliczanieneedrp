@@ -52,7 +52,7 @@ _bgStyle = 1
 _bgStyle = 2
   - slideshow
 =================================================*/
-var _imgAmount = 2; // min = 2, how many image at slideshow, file name slideshow-01.jpg, slideshow-02.jpg...slideshow-10.jpg etc
+var _imgAmount = 6; // min = 2, how many image at slideshow, file name slideshow-01.jpg, slideshow-02.jpg...slideshow-10.jpg etc
 var _kenburn = 1; // 1 = kenburn effect slideshow, 2 = normal slideshow
 
 /*=================================================
