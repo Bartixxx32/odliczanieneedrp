@@ -1,209 +1,85 @@
-/** 
- * ===================================================================
- * Main js
- *
- * ------------------------------------------------------------------- 
- */ 
+// Toggle Script
+(function() {
+	var container = document.getElementById( 'container' ),
+		trigger = container.querySelector( 'button.trigger' );
 
-(function($) {
-
-	"use strict";
-
-	/* --------------------------------------------------- */
-	/* Preloader
-	------------------------------------------------------ */ 
-   $(window).load(function() {
-      // will first fade out the loading animation 
-    	$("#loader").fadeOut("slow", function(){
-
-        // will fade out the whole DIV that covers the website.
-        $("#preloader").delay(300).fadeOut("slow");
-
-      }); 
-  	})
-
-
-  	/*---------------------------------------------------- */
-	/* FitVids
-	------------------------------------------------------ */ 
-  	$(".fluid-video-wrapper").fitVids();
-
-
-	/* --------------------------------------------------- */
-	/*  Vegas Slideshow
-	------------------------------------------------------ */
-	$(".home-slides").vegas({
-		transition: 'fade',
-		transitionDuration: 2500,
-		delay: 5000,
-    	slides: [
-       	{ src: "images/slides/03.jpg" },
-        	{ src: "images/slides/02.jpg" },
-        	{ src: "images/slides/01.jpg" }
-    	]
-	});
-
-
-	/* --------------------------------------------------- */
-	/*  Particle JS
-	------------------------------------------------------ */
-	$('.home-particles').particleground({
-	   dotColor: '#fff',
-	   lineColor: '#555555',
-	   particleRadius: 6,
-	   curveLines: true,
-	   density: 10000,
-	   proximity: 110
-	}); 
-
-
-	/*-----------------------------------------------------*/
-	/* tabs
-  	-------------------------------------------------------*/	
-	$(".tab-content").hide();
-	$(".tab-content").first().show();
-
-	$("ul.tabs li").click(function () {
-	   $("ul.tabs li").removeClass("active");
-	   $(this).addClass("active");
-	   $(".tab-content").hide();
-	   var activeTab = $(this).attr("data-id");
-	   $("#" + activeTab).fadeIn(700);
-	});
-
-
-	/*----------------------------------------------------*/
-  	/* Smooth Scrolling
-  	------------------------------------------------------*/
-  	$('.smoothscroll').on('click', function (e) {
-	 	
-	 	e.preventDefault();
-
-   	var target = this.hash,
-    	$target = $(target);
-
-    	$('html, body').stop().animate({
-       	'scrollTop': $target.offset().top
-      }, 800, 'swing', function () {
-      	window.location.hash = target;
-      });
-
-  	});
-
-
-  	/* --------------------------------------------------- */
-	/*  Placeholder Plugin Settings
-	------------------------------------------------------ */
-	$('input, textarea, select').placeholder()  
-
-
-  	/*---------------------------------------------------- */
-   /* ajaxchimp
-	------------------------------------------------------ */
-
-	// Example MailChimp url: http://xxx.xxx.list-manage.com/subscribe/post?u=xxx&id=xxx
-	var mailChimpURL = 'http://facebook.us8.list-manage.com/subscribe/post?u=cdb7b577e41181934ed6a6a44&amp;id=e65110b38d'
-
-	$('#mc-form').ajaxChimp({
-
-		language: 'es',
-	   url: mailChimpURL
-
-	});
-
-	// Mailchimp translation
-	//
-	//  Defaults:
-	//	 'submit': 'Submitting...',
-	//  0: 'We have sent you a confirmation email',
-	//  1: 'Please enter a value',
-	//  2: 'An email address must contain a single @',
-	//  3: 'The domain portion of the email address is invalid (the portion after the @: )',
-	//  4: 'The username portion of the email address is invalid (the portion before the @: )',
-	//  5: 'This email address looks fake or invalid. Please enter a real email address'
-
-	$.ajaxChimp.translations.es = {
-	  'submit': 'Submitting...',
-	  0: '<i class="fa fa-check"></i> We have sent you a confirmation email',
-	  1: '<i class="fa fa-warning"></i> You must enter a valid e-mail address.',
-	  2: '<i class="fa fa-warning"></i> E-mail address is not valid.',
-	  3: '<i class="fa fa-warning"></i> E-mail address is not valid.',
-	  4: '<i class="fa fa-warning"></i> E-mail address is not valid.',
-	  5: '<i class="fa fa-warning"></i> E-mail address is not valid.'
+	function toggleContent() {
+		if( classie.has( container, 'container-open' ) ) {
+			classie.remove( container, 'container-open' );
+			classie.remove( trigger, 'trigger-active' );
+			window.addEventListener( 'scroll', noscroll );
+		}
+		else {
+			classie.add( container, 'container-open' );
+			classie.add( trigger, 'trigger-active' );
+			window.removeEventListener( 'scroll', noscroll );
+		}
 	}
 
+	function noscroll() {
+		window.scrollTo( 0, 0 );
+	}
 
-	/*---------------------------------------------------- */
-	/*	contact form
-	------------------------------------------------------ */
+	// reset scrolling position
+	document.body.scrollTop = document.documentElement.scrollTop = 0;
 
-	/* local validation */
-	$('#contactForm').validate({
+	// disable scrolling
+	window.addEventListener( 'scroll', noscroll );
 
-		/* submit via ajax */
-		submitHandler: function(form) {
+	trigger.addEventListener( 'click', toggleContent );
 
-			var sLoader = $('#submit-loader');
+	// For Demo purposes only (prevent jump on click)
+	[].slice.call( document.querySelectorAll('.content-wrapper a') ).forEach( function(el) { el.onclick = function() { return false; } } );
+})();
 
-			$.ajax({      	
+// Background Image Sideshow
+(function(){
+    'use strict';
 
-		      type: "POST",
-		      url: "inc/sendEmail.php",
-		      data: $(form).serialize(),
-		      beforeSend: function() { 
+    jQuery('#maximage').maximage();
 
-		      	sLoader.fadeIn(); 
+})();
 
-		      },
-		      success: function(msg) {
-
-	            // Message was sent
-	            if (msg == 'OK') {
-	            	sLoader.fadeOut(); 
-	               $('#message-warning').hide();
-	               $('#contactForm').fadeOut();
-	               $('#message-success').fadeIn();   
-	            }
-	            // There was an error
-	            else {
-	            	sLoader.fadeOut(); 
-	               $('#message-warning').html(msg);
-		            $('#message-warning').fadeIn();
-	            }
-
-		      },
-		      error: function() {
-
-		      	sLoader.fadeOut(); 
-		      	$('#message-warning').html("Something went wrong. Please try again.");
-		         $('#message-warning').fadeIn();
-
-		      }
-
-	      });     		
-  		}
-
-	});
+  // JavaScript Document
 
 
-	/*----------------------------------------------------*/
-	/* Final Countdown Settings
-	------------------------------------------------------ */
-	var finalDate = '2018/01/01';
+// screen loader
+$(window).load(function() {
+    "use strict";
+    $('.screen-loader').fadeOut('slow');
+});
 
-	$('div#counter').countdown(finalDate)
-   	.on('update.countdown', function(event) {
+// preload
+$(document).ready(function() {
+    "use strict";
+    $('#preload').css({
+        display: 'table'
+    });
+});
 
-   		$(this).html(event.strftime('<div class=\"half\">' +
-   											 '<span>%D <sup>days</sup></span>' + 
-   										 	 '<span>%H <sup>hours</sup></span>' + 
-   										 	 '</div>' +
-   										 	 '<div class=\"half\">' +
-   										 	 '<span>%M <sup>mins</sup></span>' +
-   										 	 '<span>%S <sup>secs</sup></span>' +
-   										 	 '</div>'));
+// preload function
+$(window).load(preLoader);
+"use strict";
+function preLoader() {
+    setTimeout(function() {
+        $('#preload').delay(1000).fadeOut(1500);
+    });
+};
 
-   });     
- 
+// niceScroll
+$(document).ready(function() {
+    "use strict";
+    $("body").niceScroll({
+        cursorcolor: "#fff",
+        cursorwidth: "5px",
+        cursorborder: "1px solid #fff",
+        cursorborderradius: "0px",
+        zindex: "9999",
+        scrollspeed: "60",
+        mousescrollstep: "40"
+    });
+});
 
-})(jQuery);
+
+// niceScroll || scrollbars resize
+$("body").getNiceScroll().resize();
