@@ -823,7 +823,7 @@ volume
         var $audioPlayer = document.getElementById('audio-player');
 
         if (isMobile) {
-          $body.addClass('volume-on');
+          $body.addClass('volume-off');
           $audioPlayer.play();
         } else {
           $body.addClass('volume-on');
