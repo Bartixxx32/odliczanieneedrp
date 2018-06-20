@@ -77,7 +77,7 @@ var _ytRemoveVolume = false; // remove volume icon, if _ytMute = false will stil
 /*==============================================================================
 audio - only work when bg style not video or youtube video
 ==============================================================================*/
-var _audio = true; // enable audio on desktop devices
+var _audio = false; // enable audio on desktop devices
 
 /*=================================================
 effect
