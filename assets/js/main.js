@@ -822,6 +822,15 @@ volume
       if (_bgStyle == 1 || _bgStyle == 2) {
         var $audioPlayer = document.getElementById('audio-player');
 
+        if (isMobile) {
+          $body.addClass('volume-off');
+          $audioPlayer.pause();
+        } else {
+          $body.addClass('volume-off');
+          fn_volumeOn();
+          $audioPlayer.pause();
+        }
+
         $volume.on('click', function(e) {
           e.preventDefault();
 
