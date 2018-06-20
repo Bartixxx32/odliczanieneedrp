@@ -823,12 +823,13 @@ volume
         var $audioPlayer = document.getElementById('audio-player');
 
         if (isMobile) {
-          $body.addClass('volume-off');
-          $audioPlayer.pause();
-        } else {
-          $body.addClass('volume-off');
+          $body.addClass('volume-on');
           fn_volumeOn();
-          $audioPlayer.pause();
+          $audioPlayer.play();
+        } else {
+          $body.addClass('volume-on');
+          fn_volumeOn();
+          $audioPlayer.play();
         }
 
         $volume.on('click', function(e) {
