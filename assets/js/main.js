@@ -823,9 +823,6 @@ volume
         var $audioPlayer = document.getElementById('audio-player');
 
         if (isMobile) {
-          $body.addClass('volume-on');
-          fn_volumeOn();
-          $audioPlayer.play();
         } else {
           $body.addClass('volume-on');
           fn_volumeOn();
