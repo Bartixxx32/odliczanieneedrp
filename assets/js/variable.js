@@ -70,7 +70,7 @@ var _ytUrl = 'VmQNo8xtcAg'; // youtube video id
 var _ytQuality = 'hd1080'; // hightres, hd1080, hd720, default - youtube video quality
 var _ytStart = 1; // start time (seconds)
 var _ytEnd = 0; // end time (seconds), 0 to ignored
-var _ytLoop = true; // loop
+var _ytLoop = false; // loop
 var _ytMute = false; // mute on start
 var _ytRemoveVolume = false; // remove volume icon, if _ytMute = false will still have volume
 
