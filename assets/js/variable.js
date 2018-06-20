@@ -41,7 +41,7 @@ var _countdownTimezone = '+1'; // timezone
 /*=================================================
 background style
 =================================================*/
-var _bgStyle = 2; // 1 = image, 2 = slideshow, 3 = html5 video, 4 = youtube video
+var _bgStyle = 4; // 1 = image, 2 = slideshow, 3 = html5 video, 4 = youtube video
 
 /*=================================================
 _bgStyle = 1
@@ -66,10 +66,10 @@ var _removeVolume = false; // remove volume icon, if _videoMute = false will sti
 _bgStyle = 4
   - youtube video
 =================================================*/
-var _ytUrl = 'wr-srbfQeKk'; // youtube video id
+var _ytUrl = 'VmQNo8xtcAg'; // youtube video id
 var _ytQuality = 'hightres'; // hightres, hd1080, hd720, default - youtube video quality
-var _ytStart = 35; // start time (seconds)
-var _ytEnd = 120; // end time (seconds), 0 to ignored
+var _ytStart = 0; // start time (seconds)
+var _ytEnd = 0; // end time (seconds), 0 to ignored
 var _ytLoop = true; // loop
 var _ytMute = false; // mute on start
 var _ytRemoveVolume = false; // remove volume icon, if _ytMute = false will still have volume
