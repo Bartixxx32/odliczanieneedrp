@@ -68,7 +68,7 @@ _bgStyle = 4
 =================================================*/
 var _ytUrl = 'VmQNo8xtcAg'; // youtube video id
 var _ytQuality = 'hightres'; // hightres, hd1080, hd720, default - youtube video quality
-var _ytStart = 0; // start time (seconds)
+var _ytStart = 1; // start time (seconds)
 var _ytEnd = 0; // end time (seconds), 0 to ignored
 var _ytLoop = true; // loop
 var _ytMute = false; // mute on start
