@@ -35,13 +35,13 @@ var _animationDuration = 1750; // animation duration
 countdown
 ==============================================================================*/
 var _countdown = true; // countdown toggle
-var _countdownDate = '10/02/2018 7:00:00'; // 2015-12-24 23:59:59
+var _countdownDate = '12/26/2018 18:00:00'; // 2015-12-24 23:59:59
 var _countdownTimezone = '+1'; // timezone
 
 /*=================================================
 background style
 =================================================*/
-var _bgStyle = 4; // 1 = image, 2 = slideshow, 3 = html5 video, 4 = youtube video
+var _bgStyle = 1; // 1 = image, 2 = slideshow, 3 = html5 video, 4 = youtube video
 
 /*=================================================
 _bgStyle = 1
